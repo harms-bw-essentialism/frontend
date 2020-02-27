@@ -101,6 +101,11 @@ const Login = props => {
                         helperText={errors.password && touched.password}
                         margin="normal"
                       />
+                      <DialogActions>
+                        <Button type="submit" disabled={isSubmitting}>
+                          Login
+                        </Button>
+                      </DialogActions>
                     </form>
                   );
                 }}
