@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import Root from "./App/Root";
-import store from "./Redux/store";
+import store from "./App/store";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(<Root store={store} />, document.getElementById("root"));
