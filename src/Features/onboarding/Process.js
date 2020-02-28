@@ -8,7 +8,7 @@ import {
   Typography,
   Button
 } from "@material-ui/core";
-import ValueSelection from "../values/ValueSelection";
+import ValueSelection from "../values/Select";
 
 const Process = () => {
   const useStyles = makeStyles(theme => ({
