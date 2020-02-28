@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectValue } from "../../Redux/Actions";
 import { makeStyles } from "@material-ui/core/styles";
@@ -7,7 +7,8 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Divider
+  Divider,
+  Button
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
@@ -39,19 +40,20 @@ const ValueSelection = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <h2>Select Values</h2>
-      <List className={classes.scroll}>
-        {values.map(item => (
-          <ListItem key={item.id} onClick={handleSelect(item)}>
-            <ListItemText>{item.name}</ListItemText>
-            <ListItemIcon>
-              {item.selected ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-            </ListItemIcon>
-          </ListItem>
-        ))}
-      </List>
-    </div>
+    <React.Fragment>
+      <div className={classes.root}>
+        <List className={classes.scroll}>
+          {values.map(item => (
+            <ListItem key={item.id} onClick={handleSelect(item)}>
+              <ListItemText>{item.name}</ListItemText>
+              <ListItemIcon>
+                {item.selected ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+              </ListItemIcon>
+            </ListItem>
+          ))}
+        </List>
+      </div>
+    </React.Fragment>
   );
 };
 

@@ -20,7 +20,8 @@ const initialState = {
     { id: 15, name: "Nature and the Environment", selected: false },
     { id: 16, name: "Relationships", selected: false }
   ],
-  other: false
+  other: false,
+  disableNextButton: true
 };
 
 export const valueReducer = (state = initialState, { type, payload }) => {

@@ -1,5 +1,5 @@
 import LoginForm from "../Features/onboarding/LoginForm";
-import ValueSelection from "../Features/values/ValueSelection";
+import Process from "../Features/onboarding/Process";
 
 const Routes = [
   {
@@ -7,8 +7,8 @@ const Routes = [
     component: LoginForm
   },
   {
-    path: "/value-select",
-    component: ValueSelection
+    path: "/processing",
+    component: Process
   }
 ];
 
