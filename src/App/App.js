@@ -16,22 +16,20 @@ const App = () => {
   const classes = useStyles();
 
   return (
-    <Container className={classes.appContainer}>
+    <Card className={classes.appContainer}>
       <Box my={2}>
         <NavBar />
         <React.Fragment>
           <Switch>
             {Routes.map(route => (
               <Route exact path={route.path} key={route.path}>
-                <Card>
-                  <route.component classes={{}} />
-                </Card>
+                <route.component classes={{}} />
               </Route>
             ))}
           </Switch>
         </React.Fragment>
       </Box>
-    </Container>
+    </Card>
   );
 };
 
