@@ -11,6 +11,7 @@ const Root = ({ store }) => {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Router>
+          <CssBaseline />
           <Route path="/:filter?" component={App} />
         </Router>
       </ThemeProvider>
