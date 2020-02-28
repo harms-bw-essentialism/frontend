@@ -14,7 +14,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import theme from "../../App/theme";
 
-const ValueSelection = () => {
+const Selection = () => {
   const values = useSelector(state => state.values.values);
 
   const dispatch = useDispatch();
@@ -57,4 +57,4 @@ const ValueSelection = () => {
   );
 };
 
-export default ValueSelection;
+export default Selection;

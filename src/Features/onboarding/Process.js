@@ -8,7 +8,8 @@ import {
   Typography,
   Button
 } from "@material-ui/core";
-import ValueSelection from "../values/Select";
+import Selection from "../values/Selection";
+import Narrow from "../values/Narrow";
 
 const Process = () => {
   const useStyles = makeStyles(theme => ({
@@ -27,8 +28,8 @@ const Process = () => {
 
   const getSteps = () => {
     return [
-      { text: "Select values", component: <ValueSelection /> },
-      { text: "Narrow Values", component: <p>Narrow Values</p> },
+      { text: "Select values", component: <Selection /> },
+      { text: "Narrow Values", component: <Narrow /> },
       { text: "Enter Projects", component: <p>Enter Projects</p> }
     ];
   };
