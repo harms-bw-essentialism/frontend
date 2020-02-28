@@ -1,9 +1,9 @@
-import Login from "../Features/onboarding/Login";
+import LoginForm from "../Features/onboarding/LoginForm";
 
 const Routes = [
   {
     path: "/login",
-    component: Login
+    component: LoginForm
   }
 ];
 
