@@ -22,6 +22,10 @@ const NavBar = props => {
   const useStyles = makeStyles(theme => ({
     title: {
       fontSize: "24px"
+    },
+    menuDrawer: {
+      width: "90vw",
+      border: "2px solid red"
     }
   }));
 
@@ -52,7 +56,12 @@ const NavBar = props => {
         </Toolbar>
       </AppBar>
       {drawerOpen && (
-        <Drawer open={"left"} onClose={handleDrawer}>
+        <Drawer
+          open={"left"}
+          onClose={handleDrawer}
+          classes={classes.menuDrawer}
+        >
+          <h2>Essentialism</h2>
           <NavList />
           {/* <p>Hello</p> */}
         </Drawer>
