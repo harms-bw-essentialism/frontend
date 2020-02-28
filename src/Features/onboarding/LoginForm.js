@@ -17,7 +17,7 @@ const styles = {};
 
 const loginFormEndPoint = process.env.REACT_APP_LOGIN_ENDPOINT;
 
-const Login = props => {
+const LoginForm = props => {
   const { classes } = props;
   const [open, setOpen] = useState(false);
   const [isSubmitionCompleted, setSubmitionCompleted] = useState(false);
@@ -118,4 +118,4 @@ const Login = props => {
   );
 };
 
-export default Login;
+export default LoginForm;
