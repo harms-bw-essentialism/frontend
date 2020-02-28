@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import Root from "./App/Root";
 import store from "./App/store";
+import { CssBaselinem } from "@material-ui/core";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(<Root store={store} />, document.getElementById("root"));
