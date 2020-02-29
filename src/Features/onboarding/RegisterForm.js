@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom"
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 import {
     TextField,
     Button,
@@ -8,26 +8,32 @@ import {
 import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import Paper from '@material-ui/core/Paper';
   
-  const styles = {};
+// const useStyles = makeStyles(theme => ({
+//     root: {
+//       display: 'flex',
+//       flexWrap: 'wrap',
+//       '& > *': {
+//         margin: theme.spacing(1),
+//         width: theme.spacing(10),
+//         height: theme.spacing(16),
+//       },
+//     },
+//   }));
+
+const styles = {};
   
   const registerFormEndPoint = process.env.REACT_APP_LOGIN_ENDPOINT;
   
   const RegisterForm = props => {
+    // const classes = useStyles();
     const { classes } = props;
-    const [open, setOpen] = useState(false);
     const [isSubmitionCompleted, setSubmitionCompleted] = useState(false);
-  
-    // const handleClose = () => {
-    //   setOpen(false);
-    // };
-    // const handleClickOpen = () => {
-    //   setSubmitionCompleted(false);
-    //   setOpen(true);
-    // };
   
     return (
         <React.Fragment>
+            <Paper elevation={3}>
             <Formik
                 initialValues={{ email: "", password: "", passwordConfirm: "" }}
                 onSubmit={(values, { setSubmitting }) => {
@@ -105,10 +111,10 @@ import * as Yup from "yup";
                         />
                         <br/>
                         <span class="error" style={{ color: "red" }}>
-                            {errors.changepassword}
+                            {errors.passwordConfirm}
                         </span>
                         <br/>
-                        <Button type="submit" disabled={isSubmitting}>
+                        <Button type="submit" variant="contained" disabled={isSubmitting} color="primary">
                             Register
                         </Button>
                         <p>Already have an accout? <Link to="./login">Login Here!</Link></p>
@@ -117,6 +123,8 @@ import * as Yup from "yup";
 
                 }}
             </Formik>
+            </Paper>
+            
         </React.Fragment>
     );
   };
