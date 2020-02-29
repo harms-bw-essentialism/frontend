@@ -1,54 +1,42 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom"
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 import {
   TextField,
-  // Button,
-  // Dialog,
-  // DialogActions,
-  // DialogContent,
-  // DialogContentText,
-  // DialogTitle
+  Button,
 } from "@material-ui/core";
 import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import Paper from '@material-ui/core/Paper';
+
+// const useStyles = makeStyles(theme => ({
+//   root: {
+//     display: 'flex',
+//     flexWrap: 'wrap',
+//     '& > *': {
+//       margin: theme.spacing(1),
+//       width: theme.spacing(10),
+//       height: theme.spacing(16),
+//     },
+//   },
+// }));
 
 const styles = {};
 
 const loginFormEndPoint = process.env.REACT_APP_LOGIN_ENDPOINT;
 
 const LoginForm = props => {
+  // const classes = useStyles();
   const { classes } = props;
-  const [open, setOpen] = useState(false);
-  const [isSubmitionCompleted, setSubmitionCompleted] = useState(false);
+   const [isSubmitionCompleted, setSubmitionCompleted] = useState(false);
 
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-  // const handleClickOpen = () => {
-  //   setSubmitionCompleted(false);
-  //   setOpen(true);
-  // };
 
   return (
+    
     <React.Fragment>
-      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Login!
-      </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-login"
-      >
-        {!isSubmitionCompleted && (
-          <React.Fragment>
-            <DialogTitle id="form-dialog-login">Login</DialogTitle>
-            <DialogContent>
-              <DialogContentText>
-                Login with Email Address and Password
-              </DialogContentText> */}
-              
+
+              <Paper elevation={3}>
               <Formik
                 initialValues={{ email: "", password: "" }}
                 onSubmit={(values, { setSubmitting }) => {
@@ -104,21 +92,21 @@ const LoginForm = props => {
                         helperText={errors.password && touched.password}
                         margin="normal"
                       />
-                      {/* <DialogActions>
-                        <Button type="submit" disabled={isSubmitting}>
+                      <br></br>
+                     
+                        <Button type="submit" variant="contained" disabled={isSubmitting} color="primary">
                           Login
                         </Button>
-                      </DialogActions> */}
+                      
                       <p>Don't have an account? <Link to="./register">Register Here!</Link></p>
                     </form>
                   );
                 }}
               </Formik>
-            {/* </DialogContent> */}
-          {/* </React.Fragment> */}
-        {/* )} */}
-      {/* </Dialog> */}
+              </Paper>
+         
     </React.Fragment>
+    
   );
 };
 
