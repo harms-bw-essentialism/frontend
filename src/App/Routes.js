@@ -1,5 +1,6 @@
 import LoginForm from "../Features/onboarding/LoginForm";
 import Process from "../Features/onboarding/Process";
+import RegisterForm from "../Features/onboarding/RegisterForm";
 
 const Routes = [
   {
@@ -9,6 +10,10 @@ const Routes = [
   {
     path: "/processing",
     component: Process
+  
+  {
+    path: "/register",
+    component: RegisterForm
   }
 ];
 

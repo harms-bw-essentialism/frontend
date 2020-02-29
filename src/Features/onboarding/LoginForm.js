@@ -1,13 +1,14 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"
 import { withStyles } from "@material-ui/core/styles";
 import {
   TextField,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle
+  // Button,
+  // Dialog,
+  // DialogActions,
+  // DialogContent,
+  // DialogContentText,
+  // DialogTitle
 } from "@material-ui/core";
 import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -22,17 +23,17 @@ const LoginForm = props => {
   const [open, setOpen] = useState(false);
   const [isSubmitionCompleted, setSubmitionCompleted] = useState(false);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleClickOpen = () => {
-    setSubmitionCompleted(false);
-    setOpen(true);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
+  // const handleClickOpen = () => {
+  //   setSubmitionCompleted(false);
+  //   setOpen(true);
+  // };
 
   return (
     <React.Fragment>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Login!
       </Button>
       <Dialog
@@ -46,7 +47,8 @@ const LoginForm = props => {
             <DialogContent>
               <DialogContentText>
                 Login with Email Address and Password
-              </DialogContentText>
+              </DialogContentText> */}
+              
               <Formik
                 initialValues={{ email: "", password: "" }}
                 onSubmit={(values, { setSubmitting }) => {
@@ -80,7 +82,7 @@ const LoginForm = props => {
                     <form onSubmit={handleSubmit}>
                       <TextField
                         error={errors.email && touched.email}
-                        label="email"
+                        label="Email"
                         name="email"
                         className={classes.textField}
                         value={values.email}
@@ -89,9 +91,10 @@ const LoginForm = props => {
                         helperText={errors.email && touched.email}
                         margin="normal"
                       />
+                      <br/>
                       <TextField
                         error={errors.password && touched.password}
-                        label="password"
+                        label="Password"
                         name="password"
                         type="password"
                         className={classes.textField}
@@ -101,19 +104,20 @@ const LoginForm = props => {
                         helperText={errors.password && touched.password}
                         margin="normal"
                       />
-                      <DialogActions>
+                      {/* <DialogActions>
                         <Button type="submit" disabled={isSubmitting}>
                           Login
                         </Button>
-                      </DialogActions>
+                      </DialogActions> */}
+                      <p>Don't have an account? <Link to="./register">Register Here!</Link></p>
                     </form>
                   );
                 }}
               </Formik>
-            </DialogContent>
-          </React.Fragment>
-        )}
-      </Dialog>
+            {/* </DialogContent> */}
+          {/* </React.Fragment> */}
+        {/* )} */}
+      {/* </Dialog> */}
     </React.Fragment>
   );
 };
