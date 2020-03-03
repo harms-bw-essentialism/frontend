@@ -1,5 +1,5 @@
 import LoginForm from "../Features/onboarding/LoginForm";
-import Process from "../Features/onboarding/Process";
+import Process from "../Features/values/Process";
 import RegisterForm from "../Features/onboarding/RegisterForm";
 
 const Routes = [
