@@ -19,7 +19,8 @@ const initialState = {
   ],
   other: false,
   selectedValues: [],
-  narrowedValues: []
+  narrowedValues: [],
+  notNarrowedValues: []
 };
 
 export const valueReducer = (state = initialState, { type, payload }) => {
@@ -36,18 +37,21 @@ export const valueReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         values: newValues,
-        selectedValues: selected
+        selectedValues: selected,
+        notNarrowedValues: selected
       };
     case NARROW_VALUE:
-      const narrowed = state.values.map(item => {
-        return payload.id === item.id
-          ? { ...item, mostValued: !payload.mostValued }
-          : { ...item };
+      const newNarrowedValues = [];
+      const newNotNarrowedValues = [];
+      state.notNarrowedValues.map(item => {
+        return payload.id === item.id && !item.narrowed
+          ? newNarrowedValues.push(item)
+          : newNotNarrowedValues.push(item);
       });
       return {
         ...state,
-        selectedValues: narrowed,
-        narrowedValues: narrowed
+        narrowedValues: newNarrowedValues,
+        notNarrowedValues: newNotNarrowedValues
       };
     default:
       return state;
