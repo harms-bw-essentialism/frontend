@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-export const useLocalStorate = (key, initialValue) => {
-  if (typeof key !== string) {
+export const useLocalStorage = (key, initialValue) => {
+  if (typeof key !== "string") {
     throw new Error("Invalid Paramas: useLocalStorage(key,initialValue)");
   }
   const [storedValue, setStoredValue] = useState(() => {
