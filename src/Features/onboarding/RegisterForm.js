@@ -22,7 +22,14 @@ import Paper from '@material-ui/core/Paper';
 //     },
 //   }));
 
-const styles = {};
+const styles = {
+    Paper: {
+        padding: 20,
+        marginTop: 10,
+        marginBottom: 10,
+        height: 400,
+    }
+};
   
   const registerFormEndPoint = process.env.REACT_APP_LOGIN_ENDPOINT;
   
@@ -33,9 +40,9 @@ const styles = {};
   
     return (
         <React.Fragment>
-            <Paper elevation={3}>
+            
             <Formik
-                initialValues={{ email: "", password: "", passwordConfirm: "" }}
+                initialValues={{ username: "", email: "", password: "", passwordConfirm: "" }}
                 onSubmit={(values, { setSubmitting }) => {
                 setSubmitting(true);
                 axios.post(registerFormEndPoint, values).then(resp => {
@@ -43,6 +50,9 @@ const styles = {};
                 });
                 }}
                 validationSchema={Yup.object().shape({
+                    username: Yup.string()
+                        .min(3)
+                        .required("Required"),
                     email: Yup.string()
                         .email()
                         .required("Required"),
@@ -71,7 +81,20 @@ const styles = {};
                     handleReset
                 } = props;
                 return (
+                    <Paper elevation={3} style={styles.Paper}>
                     <form onSubmit={handleSubmit}>
+                        <TextField
+                            error={errors.username && touched.username}
+                            label="Name"
+                            name="name"
+                            className={classes.textField}
+                            value={values.username}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            helperText={errors.username && touched.username}
+                            margin="normal"
+                        />
+                        <br/>
                         <TextField
                             error={errors.email && touched.email}
                             label="Email"
@@ -119,12 +142,12 @@ const styles = {};
                         </Button>
                         <p>Already have an accout? <Link to="./login">Login Here!</Link></p>
                     </form>
+                    </Paper>
                 );
 
                 }}
             </Formik>
-            </Paper>
-            
+                        
         </React.Fragment>
     );
   };

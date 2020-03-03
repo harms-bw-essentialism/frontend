@@ -22,7 +22,14 @@ import Paper from '@material-ui/core/Paper';
 //   },
 // }));
 
-const styles = {};
+const styles = {
+  Paper: {
+      padding: 20,
+      marginTop: 10,
+      marginBottom: 10,
+      height: 250,
+  }
+};
 
 const loginFormEndPoint = process.env.REACT_APP_LOGIN_ENDPOINT;
 
@@ -36,7 +43,6 @@ const LoginForm = props => {
     
     <React.Fragment>
 
-              <Paper elevation={3}>
               <Formik
                 initialValues={{ email: "", password: "" }}
                 onSubmit={(values, { setSubmitting }) => {
@@ -67,6 +73,7 @@ const LoginForm = props => {
                     handleReset
                   } = props;
                   return (
+                    <Paper elevation={3} style={styles.Paper}>
                     <form onSubmit={handleSubmit}>
                       <TextField
                         error={errors.email && touched.email}
@@ -100,11 +107,11 @@ const LoginForm = props => {
                       
                       <p>Don't have an account? <Link to="./register">Register Here!</Link></p>
                     </form>
+                    </Paper>
                   );
                 }}
               </Formik>
-              </Paper>
-         
+                       
     </React.Fragment>
     
   );
