@@ -10,7 +10,7 @@ const Routes = [
   {
     path: "/processing",
     component: Process
-  
+  },
   {
     path: "/register",
     component: RegisterForm
