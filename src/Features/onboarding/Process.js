@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import Selection from "../values/Selection";
 import Narrow from "../values/Narrow";
+import Submission from "../projects/Submission";
 
 const Process = () => {
   const useStyles = makeStyles(theme => ({
@@ -30,7 +31,7 @@ const Process = () => {
     return [
       { text: "Select values", component: <Selection /> },
       { text: "Narrow Values", component: <Narrow /> },
-      { text: "Enter Projects", component: <p>Enter Projects</p> }
+      { text: "Enter Projects", component: <Submission /> }
     ];
   };
 
