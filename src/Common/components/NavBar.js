@@ -79,7 +79,9 @@ const NavList = props => {
       ].map(({ link, icon }) => (
         <ListItem button key={link}>
           <ListItemIcon>{icon}</ListItemIcon>
-          <ListItemText>{link}</ListItemText>
+          <NavLink to={`/${link}`}>
+            <ListItemText>{link}</ListItemText>
+          </NavLink>
         </ListItem>
       ))}
     </List>
