@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { narrowValue } from "../../Redux/Actions";
 import { withStyles, makeStyles } from "@material-ui/core";
 import { Button, Menu, MenuItem, ListItemText } from "@material-ui/core";
 
@@ -41,6 +42,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Narrow = () => {
+  const dispatch = useDispatch();
+
   const classes = useStyles();
 
   const [valueOne, setValueOne] = useState({
@@ -57,16 +60,12 @@ const Narrow = () => {
   });
 
   const selected = useSelector(state => state.values.selectedValues);
-  const notNarrowed = selected.filter(item =>
-    !item.mostValued ? { ...item } : null
-  );
-  const narrowed = selected.filter(item =>
-    item.mostValued ? { ...item } : null
-  );
+  const notNarrowed = useSelector(state => state.values.notNarrowedValues);
 
   const handleMenuOneOpen = evt => {
     evt.preventDefault();
     setValueOne({ ...valueOne, anchorEl: evt.currentTarget });
+    dispatch(narrowValue);
   };
   const handleMenuTwoOpen = evt => {
     evt.preventDefault();
@@ -77,43 +76,45 @@ const Narrow = () => {
     setValueThree({ ...valueThree, anchorEl: evt.currentTarget });
   };
 
-  const handleClose = menuIndex => evt => {
+  const handleMenuOneClose = evt => {
     evt.preventDefault();
-    switch (menuIndex) {
-      case 0:
-        setValueOne({ ...valueOne, anchorEl: null });
-      case 1:
-        setValueTwo({ ...valueTwo, anchorEl: null });
-      case 2:
-        setValueThree({ ...valueThree, anchorEl: null });
-      default:
-        break;
-    }
+    setValueOne({ ...valueOne, anchorEl: null });
+  };
+  const handleMenuTwoClose = evt => {
+    evt.preventDefault();
+    setValueTwo({ ...valueTwo, anchorEl: null });
+  };
+  const handleMenuThreeClose = evt => {
+    evt.preventDefault();
+    setValueThree({ ...valueThree, anchorEl: null });
   };
 
-  const handleMenuOneSelect = evt => {
+  const handleMenuOneSelect = item => evt => {
     evt.preventDefault();
     setValueOne({
       ...valueOne,
-      text: evt.target.innerText,
+      text: item.name,
       anchorEl: null
     });
+    dispatch(narrowValue(item));
   };
-  const handleMenuTwoSelect = evt => {
+  const handleMenuTwoSelect = item => evt => {
     evt.preventDefault();
     setValueTwo({
       ...valueOne,
-      text: evt.target.innerText,
+      text: item.name,
       anchorEl: null
     });
+    dispatch(narrowValue(item));
   };
-  const handleMenuThreeSelect = evt => {
+  const handleMenuThreeSelect = item => evt => {
     evt.preventDefault();
     setValueThree({
       ...valueOne,
-      text: evt.target.innerText,
+      text: item.name,
       anchorEl: null
     });
+    dispatch(narrowValue(item));
   };
 
   return (
@@ -124,10 +125,10 @@ const Narrow = () => {
           anchorEl={valueOne.anchorEl}
           keepMounted
           open={Boolean(valueOne.anchorEl)}
-          onClose={handleClose(0)}
+          onClose={handleMenuOneClose}
         >
           {notNarrowed.map(item => (
-            <StyledMenuItem onClick={handleMenuOneSelect}>
+            <StyledMenuItem onClick={handleMenuOneSelect(item)}>
               <ListItemText primary={item.name} />
             </StyledMenuItem>
           ))}
@@ -139,10 +140,10 @@ const Narrow = () => {
           anchorEl={valueTwo.anchorEl}
           keepMounted
           open={Boolean(valueTwo.anchorEl)}
-          onClose={handleClose(1)}
+          onClose={handleMenuTwoClose}
         >
           {notNarrowed.map(item => (
-            <StyledMenuItem onClick={handleMenuTwoSelect}>
+            <StyledMenuItem onClick={handleMenuTwoSelect(item)}>
               <ListItemText primary={item.name} />
             </StyledMenuItem>
           ))}
@@ -154,10 +155,10 @@ const Narrow = () => {
           anchorEl={valueThree.anchorEl}
           keepMounted
           open={Boolean(valueThree.anchorEl)}
-          onClose={handleClose(2)}
+          onClose={handleMenuThreeClose}
         >
           {notNarrowed.map(item => (
-            <StyledMenuItem onClick={handleMenuThreeSelect}>
+            <StyledMenuItem onClick={handleMenuThreeSelect(item)}>
               <ListItemText primary={item.name} />
             </StyledMenuItem>
           ))}
