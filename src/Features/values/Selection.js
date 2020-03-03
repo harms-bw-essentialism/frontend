@@ -16,6 +16,7 @@ import theme from "../../App/theme";
 
 const Selection = () => {
   const values = useSelector(state => state.values.values);
+  const other = useSelector(state => state.values.other);
 
   const dispatch = useDispatch();
 
