@@ -1,4 +1,9 @@
-import { SELECT_VALUE, NARROW_VALUE, OTHER_VALUE } from "../Actions/types";
+import {
+  SELECT_VALUE,
+  NARROW_VALUE,
+  OTHER_VALUE,
+  ADD_OTHER
+} from "../Actions/types";
 
 const initialState = {
   values: [
@@ -17,10 +22,7 @@ const initialState = {
     { id: 15, name: "Nature/Environment", selected: false, narrowed: false },
     { id: 16, name: "Relationships", selected: false, narrowed: false }
   ],
-  other: {
-    isOther: false,
-    name: null
-  }
+  isOther: false
 };
 
 export const valueReducer = (state = initialState, { type, payload }) => {
@@ -52,10 +54,19 @@ export const valueReducer = (state = initialState, { type, payload }) => {
     case OTHER_VALUE:
       return {
         ...state,
-        other: {
-          isOther: payload,
-          name: null
-        }
+        isOther: payload
+      };
+    case ADD_OTHER:
+      const newValue = {
+        id: state.values.length,
+        name: payload,
+        selected: true,
+        narrowed: false
+      };
+      return {
+        ...state,
+        values: [...state.values, newValue],
+        isOther: false
       };
     default:
       return state;

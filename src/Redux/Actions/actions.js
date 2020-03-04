@@ -8,7 +8,8 @@ import {
   REGISTER_NEW_USER_SUCCESS,
   REGISTER_NEW_USER_FAILURE,
   LOG_USER_OUT,
-  OTHER_VALUE
+  OTHER_VALUE,
+  ADD_OTHER
 } from "./types";
 import Axios from "axios";
 
@@ -55,4 +56,9 @@ export const logoutUser = dispatch => {
 
 export const toggleOtherInput = bool => dispatch => {
   dispatch({ type: OTHER_VALUE, payload: bool });
+};
+
+export const addOther = value => dispatch => {
+  console.log(value);
+  dispatch({ type: ADD_OTHER, payload: value });
 };

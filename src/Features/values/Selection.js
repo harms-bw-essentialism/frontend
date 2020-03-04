@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectValue, toggleOtherInput } from "../../Redux/Actions";
+import { selectValue, toggleOtherInput, addOther } from "../../Redux/Actions";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  Divider,
-  Button,
-  TextField
+  Divider
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import theme from "../../App/theme";
+import OtherForm from "./OtherForm";
 
 const Selection = () => {
   const values = useSelector(state => state.values.values);
-  const { isOther, name } = useSelector(state => state.values.other);
+  const isOther = useSelector(state => state.values.isOther);
 
   const dispatch = useDispatch();
 
@@ -29,6 +28,10 @@ const Selection = () => {
   const toggleOther = bool => evt => {
     evt.preventDefault();
     dispatch(toggleOtherInput(!bool));
+  };
+
+  const addOther = value => evt => {
+    evt.preventDefault();
   };
 
   const useStyles = makeStyles(them => ({
@@ -65,12 +68,9 @@ const Selection = () => {
             </ListItemIcon>
           </ListItem>
           {isOther ? (
-            <form>
-              <TextField label="What you value" />
-              <Button variant="contained" color="primary">
-                Add Value
-              </Button>
-            </form>
+            <>
+              <Divider /> <OtherForm />
+            </>
           ) : null}
         </List>
       </div>
