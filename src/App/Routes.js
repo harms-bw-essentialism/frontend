@@ -4,16 +4,19 @@ import RegisterForm from "../Features/onboarding/RegisterForm";
 
 const Routes = [
   {
+    path: "/",
+    component: RegisterForm,
+    private: false
+  },
+  {
     path: "/login",
-    component: LoginForm
+    component: LoginForm,
+    private: false
   },
   {
     path: "/processing",
-    component: Process
-  },
-  {
-    path: "/register",
-    component: RegisterForm
+    component: Process,
+    private: true
   }
 ];
 

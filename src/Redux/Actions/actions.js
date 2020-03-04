@@ -6,10 +6,10 @@ import {
   LOG_USER_IN_FAILURE,
   REGISTER_NEW_USER,
   REGISTER_NEW_USER_SUCCESS,
-  REGISTER_NEW_USER_FAILURE
+  REGISTER_NEW_USER_FAILURE,
+  LOG_USER_OUT
 } from "./types";
 import Axios from "axios";
-import { axiosWithAuth } from "../../Common/Utils/axiosWithAuth";
 
 export const selectValue = item => dispatch => {
   dispatch({ type: SELECT_VALUE, payload: item });
@@ -48,4 +48,8 @@ export const registerUser = userCredentials => dispatch => {
     .catch(err => {
       dispatch({ type: REGISTER_NEW_USER_FAILURE, payload: err.message });
     });
+};
+
+export const logoutUser = dispatch => {
+  dispatch({ type: LOG_USER_OUT });
 };

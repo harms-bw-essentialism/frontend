@@ -4,6 +4,7 @@ import Routes from "./Routes";
 import { Container, Box, Card } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import NavBar from "../Common/components/NavBar";
+import PrivateRoute from "../Common/Utils/PrivateRoute";
 
 const App = () => {
   const useStyles = makeStyles({
@@ -15,17 +16,25 @@ const App = () => {
 
   const classes = useStyles();
 
+  console.log(Routes);
+
   return (
     <Card className={classes.appContainer}>
       <Box my={2}>
         <NavBar />
         <React.Fragment>
           <Switch>
-            {Routes.map(route => (
-              <Route exact path={route.path} key={route.path}>
-                <route.component classes={{}} />
-              </Route>
-            ))}
+            {Routes.map(route =>
+              route.private ? (
+                <PrivateRoute path={route.path} key={route.path}>
+                  <route.component classes={{}} />
+                </PrivateRoute>
+              ) : (
+                <Route exact path={route.path} key={route.path}>
+                  <route.component classes={{}} />
+                </Route>
+              )
+            )}
           </Switch>
         </React.Fragment>
       </Box>
