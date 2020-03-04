@@ -22,8 +22,7 @@ export const narrowValue = item => dispatch => {
 export const loginUser = userCredentials => dispatch => {
   dispatch({ type: LOG_USER_IN });
   Axios.post(
-    // `https://essentialism2020.herokuapp.com/api/essentialism/user/login`,
-    `http://localhost:4000/api/essentialism/user/login`,
+    `https://essentialism2020.herokuapp.com/api/essentialism/user/login`,
     userCredentials
   )
     .then(res => {
@@ -37,8 +36,7 @@ export const loginUser = userCredentials => dispatch => {
 export const registerUser = userCredentials => dispatch => {
   dispatch({ type: REGISTER_NEW_USER });
   Axios.post(
-    // `https://essentialism2020.herokuapp.com/api/essentialism/register`,
-    `http://localhost:4000/api/essentialism/user/register`,
+    `https://essentialism2020.herokuapp.com/api/essentialism/user/register`,
     userCredentials
   )
     .then(res => {
