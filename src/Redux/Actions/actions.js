@@ -7,7 +7,8 @@ import {
   REGISTER_NEW_USER,
   REGISTER_NEW_USER_SUCCESS,
   REGISTER_NEW_USER_FAILURE,
-  LOG_USER_OUT
+  LOG_USER_OUT,
+  OTHER_VALUE
 } from "./types";
 import Axios from "axios";
 
@@ -50,4 +51,8 @@ export const registerUser = userCredentials => dispatch => {
 
 export const logoutUser = dispatch => {
   dispatch({ type: LOG_USER_OUT });
+};
+
+export const toggleOtherInput = bool => dispatch => {
+  dispatch({ type: OTHER_VALUE, payload: bool });
 };

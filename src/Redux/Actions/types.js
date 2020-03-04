@@ -1,5 +1,7 @@
 export const SELECT_VALUE = "SELECT_VALUE";
 export const NARROW_VALUE = "NARROW_VALUE";
+export const OTHER_VALUE = "OTHER_VALUE";
+
 export const LOG_USER_IN = "LOG_USER_IN";
 export const LOG_USER_IN_SUCCESS = "LOG_USER_IN_SUCCESS";
 export const LOG_USER_IN_FAILURE = "LOG_USER_IN_FAILURE";
