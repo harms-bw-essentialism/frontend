@@ -1,13 +1,15 @@
 import {
   SELECT_VALUE,
-  NARROW_VALUE,
+  TOP_THREE_VALUE,
   LOG_USER_IN,
   LOG_USER_IN_SUCCESS,
   LOG_USER_IN_FAILURE,
   REGISTER_NEW_USER,
   REGISTER_NEW_USER_SUCCESS,
   REGISTER_NEW_USER_FAILURE,
-  LOG_USER_OUT
+  LOG_USER_OUT,
+  OTHER_VALUE,
+  ADD_OTHER
 } from "./types";
 import Axios from "axios";
 
@@ -16,7 +18,7 @@ export const selectValue = item => dispatch => {
 };
 
 export const narrowValue = item => dispatch => {
-  dispatch({ type: NARROW_VALUE, payload: item });
+  dispatch({ type: TOP_THREE_VALUE, payload: item });
 };
 
 export const loginUser = userCredentials => dispatch => {
@@ -50,4 +52,16 @@ export const registerUser = userCredentials => dispatch => {
 
 export const logoutUser = dispatch => {
   dispatch({ type: LOG_USER_OUT });
+};
+
+export const toggleOtherInput = bool => dispatch => {
+  dispatch({ type: OTHER_VALUE, payload: bool });
+};
+
+export const addOther = value => dispatch => {
+  dispatch({ type: ADD_OTHER, payload: value });
+};
+
+export const selectTopThree = values => dispatch => {
+  dispatch({ type: TOP_THREE_VALUE, payload: values });
 };
