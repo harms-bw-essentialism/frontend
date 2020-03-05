@@ -16,7 +16,9 @@ const Process = () => {
   const useStyles = makeStyles(theme => ({
     root: {
       width: "100%",
-      textAlign: "center"
+      textAlign: "center",
+      height: "90vh",
+      overflow: "scroll"
     },
     backButton: {
       marginRight: theme.spacing(1)

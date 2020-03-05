@@ -9,7 +9,8 @@ import {
   REGISTER_NEW_USER_FAILURE,
   LOG_USER_OUT,
   OTHER_VALUE,
-  ADD_OTHER
+  ADD_OTHER,
+  SUBMIT_PROJECT
 } from "./types";
 import Axios from "axios";
 
@@ -64,4 +65,8 @@ export const addOther = value => dispatch => {
 
 export const selectTopThree = values => dispatch => {
   dispatch({ type: TOP_THREE_VALUE, payload: values });
+};
+
+export const submitProject = project => dispatch => {
+  dispatch({ type: SUBMIT_PROJECT, payload: project });
 };
