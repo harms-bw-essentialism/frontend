@@ -1,6 +1,6 @@
 import {
   SELECT_VALUE,
-  NARROW_VALUE,
+  TOP_THREE_VALUE,
   LOG_USER_IN,
   LOG_USER_IN_SUCCESS,
   LOG_USER_IN_FAILURE,
@@ -18,7 +18,7 @@ export const selectValue = item => dispatch => {
 };
 
 export const narrowValue = item => dispatch => {
-  dispatch({ type: NARROW_VALUE, payload: item });
+  dispatch({ type: TOP_THREE_VALUE, payload: item });
 };
 
 export const loginUser = userCredentials => dispatch => {
@@ -59,6 +59,9 @@ export const toggleOtherInput = bool => dispatch => {
 };
 
 export const addOther = value => dispatch => {
-  console.log(value);
   dispatch({ type: ADD_OTHER, payload: value });
+};
+
+export const selectTopThree = values => dispatch => {
+  dispatch({ type: TOP_THREE_VALUE, payload: values });
 };

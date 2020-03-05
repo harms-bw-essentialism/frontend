@@ -1,28 +1,34 @@
 import {
   SELECT_VALUE,
-  NARROW_VALUE,
+  TOP_THREE_VALUE,
   OTHER_VALUE,
   ADD_OTHER
 } from "../Actions/types";
 
 const initialState = {
   values: [
-    { id: 0, name: "Athletics", selected: false, narrowed: false },
-    { id: 1, name: "Art", selected: false, narrowed: false },
-    { id: 2, name: "Career", selected: false, narrowed: false },
-    { id: 3, name: "Creativity", selected: false, narrowed: false },
-    { id: 4, name: "Community", selected: false, narrowed: false },
-    { id: 5, name: "Education", selected: false, narrowed: false },
-    { id: 6, name: "Friends", selected: false, narrowed: false },
-    { id: 7, name: "Family", selected: false, narrowed: false },
-    { id: 8, name: "Humor", selected: false, narrowed: false },
-    { id: 9, name: "Independence", selected: false, narrowed: false },
-    { id: 10, name: "Kindness", selected: false, narrowed: false },
-    { id: 14, name: "Moral Principles", selected: false, narrowed: false },
-    { id: 15, name: "Nature/Environment", selected: false, narrowed: false },
-    { id: 16, name: "Relationships", selected: false, narrowed: false }
+    { id: 0, name: "Athletics", selected: false, valueTopThree: false },
+    { id: 1, name: "Art", selected: false, valueTopThree: false },
+    { id: 2, name: "Career", selected: false, valueTopThree: false },
+    { id: 3, name: "Creativity", selected: false, valueTopThree: false },
+    { id: 4, name: "Community", selected: false, valueTopThree: false },
+    { id: 5, name: "Education", selected: false, valueTopThree: false },
+    { id: 6, name: "Friends", selected: false, valueTopThree: false },
+    { id: 7, name: "Family", selected: false, valueTopThree: false },
+    { id: 8, name: "Humor", selected: false, valueTopThree: false },
+    { id: 9, name: "Independence", selected: false, valueTopThree: false },
+    { id: 10, name: "Kindness", selected: false, valueTopThree: false },
+    { id: 14, name: "Moral Principles", selected: false, valueTopThree: false },
+    {
+      id: 15,
+      name: "Nature/Environment",
+      selected: false,
+      valueTopThree: false
+    },
+    { id: 16, name: "Relationships", selected: false, valueTopThree: false }
   ],
-  isOther: false
+  isOther: false,
+  topThreeValues: []
 };
 
 export const valueReducer = (state = initialState, { type, payload }) => {
@@ -33,24 +39,11 @@ export const valueReducer = (state = initialState, { type, payload }) => {
           ? { ...item, selected: !payload.selected }
           : { ...item };
       });
-      const selected = newValues.filter(item =>
-        item.selected ? { ...item } : null
-      );
       return {
         ...state,
-        values: newValues,
-        selectedValues: selected,
-        notNarrowedValues: selected
+        values: newValues
       };
-    case NARROW_VALUE:
-      const newNarrowedValues = [];
-      const newNotNarrowedValues = [];
-      state.notNarrowedValues.map(item => {});
-      return {
-        ...state,
-        narrowedValues: newNarrowedValues,
-        notNarrowedValues: newNotNarrowedValues
-      };
+
     case OTHER_VALUE:
       return {
         ...state,
@@ -61,12 +54,18 @@ export const valueReducer = (state = initialState, { type, payload }) => {
         id: state.values.length,
         name: payload,
         selected: true,
-        narrowed: false
+        valueTopThree: false
       };
       return {
         ...state,
         values: [...state.values, newValue],
         isOther: false
+      };
+    case TOP_THREE_VALUE:
+      console.log(payload);
+      return {
+        ...state,
+        topThreeValues: [...payload]
       };
     default:
       return state;

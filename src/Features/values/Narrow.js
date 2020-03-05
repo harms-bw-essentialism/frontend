@@ -1,170 +1,89 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { narrowValue } from "../../Redux/Actions";
-import { withStyles, makeStyles } from "@material-ui/core";
-import { Button, Menu, MenuItem, ListItemText } from "@material-ui/core";
-
-const StyledMenu = withStyles({
-  paper: {
-    border: "1px solid #d3d4d5"
-  }
-})(props => (
-  <Menu
-    elevation={0}
-    getContentAnchorEl={null}
-    anchorOrigin={{
-      vertical: "bottom",
-      horizontal: "center"
-    }}
-    transformOrigin={{
-      vertical: "top",
-      horizontal: "center"
-    }}
-    {...props}
-  />
-));
-
-const StyledMenuItem = withStyles(theme => ({
-  root: {
-    "&:focus": {
-      backgroundColor: theme.palette.primary.main,
-      "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
-        color: theme.palette.common.white
-      }
-    }
-  }
-}))(MenuItem);
-
-const useStyles = makeStyles(theme => ({
-  value: {
-    margin: "10px"
-  }
-}));
+import React, { useEffect, useState } from "react";
+import {
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  NativeSelect,
+  Input
+} from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { selectTopThree } from "../../Redux/Actions";
 
 const Narrow = () => {
   const dispatch = useDispatch();
-
-  const classes = useStyles();
-
-  const [valueOne, setValueOne] = useState({
-    text: "Value 1",
-    anchorEl: null
-  });
-  const [valueTwo, setValueTwo] = useState({
-    text: "Value 2",
-    anchorEl: null
-  });
-  const [valueThree, setValueThree] = useState({
-    text: "Value 3",
-    anchorEl: null
+  const values = useSelector(state => state.values.values);
+  const selectedvalues = values.filter(item => {
+    return item.selected ? item : null;
   });
 
-  const selected = useSelector(state => state.values.selectedValues);
-  const notNarrowed = useSelector(state => state.values.notNarrowedValues);
+  const [topThreeValues, setTopThreeValues] = useState({
+    valueOne: { name: selectedvalues[0].name },
+    valueTwo: { name: selectedvalues[1].name },
+    valueThree: { name: selectedvalues[2].name }
+  });
 
-  const handleMenuOneOpen = evt => {
-    evt.preventDefault();
-    setValueOne({ ...valueOne, anchorEl: evt.currentTarget });
-    dispatch(narrowValue);
-  };
-  const handleMenuTwoOpen = evt => {
-    evt.preventDefault();
-    setValueTwo({ ...valueTwo, anchorEl: evt.currentTarget });
-  };
-  const handleMenuThreeOpen = evt => {
-    evt.preventDefault();
-    setValueThree({ ...valueThree, anchorEl: evt.currentTarget });
-  };
+  useEffect(() => {
+    const topThreeArr = Object.values(topThreeValues);
+    console.log(`topThreeArr: `, topThreeArr);
+    dispatch(selectTopThree(topThreeArr));
+  }, [topThreeValues]);
 
-  const handleMenuOneClose = evt => {
-    evt.preventDefault();
-    setValueOne({ ...valueOne, anchorEl: null });
-  };
-  const handleMenuTwoClose = evt => {
-    evt.preventDefault();
-    setValueTwo({ ...valueTwo, anchorEl: null });
-  };
-  const handleMenuThreeClose = evt => {
-    evt.preventDefault();
-    setValueThree({ ...valueThree, anchorEl: null });
-  };
-
-  const handleMenuOneSelect = item => evt => {
-    evt.preventDefault();
-    setValueOne({
-      ...valueOne,
-      text: item.name,
-      anchorEl: null
+  const handleChange = name => evt => {
+    console.log(`hello`);
+    setTopThreeValues({
+      ...topThreeValues,
+      [name]: { name: evt.target.value }
     });
-    dispatch(narrowValue(item));
-  };
-  const handleMenuTwoSelect = item => evt => {
-    evt.preventDefault();
-    setValueTwo({
-      ...valueOne,
-      text: item.name,
-      anchorEl: null
-    });
-    dispatch(narrowValue(item));
-  };
-  const handleMenuThreeSelect = item => evt => {
-    evt.preventDefault();
-    setValueThree({
-      ...valueOne,
-      text: item.name,
-      anchorEl: null
-    });
-    dispatch(narrowValue(item));
   };
 
   return (
-    <>
-      <div className={classes.value}>
-        <Button onClick={handleMenuOneOpen}>{valueOne.text}</Button>
-        <StyledMenu
-          anchorEl={valueOne.anchorEl}
-          keepMounted
-          open={Boolean(valueOne.anchorEl)}
-          onClose={handleMenuOneClose}
+    <div>
+      <FormControl>
+        <InputLabel id="first-value">First Value</InputLabel>
+        <NativeSelect
+          value={topThreeValues.valueOne.name}
+          labelId="first-value"
+          onChange={handleChange("valueOne")}
         >
-          {notNarrowed.map(item => (
-            <StyledMenuItem onClick={handleMenuOneSelect(item)}>
-              <ListItemText primary={item.name} />
-            </StyledMenuItem>
+          {selectedvalues.map(item => (
+            <option key={item.id} value={item.name}>
+              {item.name}
+            </option>
           ))}
-        </StyledMenu>
-      </div>
-      <div className={classes.value}>
-        <Button onClick={handleMenuTwoOpen}>{valueTwo.text}</Button>
-        <StyledMenu
-          anchorEl={valueTwo.anchorEl}
-          keepMounted
-          open={Boolean(valueTwo.anchorEl)}
-          onClose={handleMenuTwoClose}
+        </NativeSelect>
+        <FormHelperText>Select First Value</FormHelperText>
+      </FormControl>
+      <FormControl>
+        <InputLabel id="second-value">Second Value</InputLabel>
+        <NativeSelect
+          value={topThreeValues.valueTwo.name}
+          labelId="second-value"
+          onChange={handleChange("valueTwo")}
         >
-          {notNarrowed.map(item => (
-            <StyledMenuItem onClick={handleMenuTwoSelect(item)}>
-              <ListItemText primary={item.name} />
-            </StyledMenuItem>
+          {selectedvalues.map(item => (
+            <option key={item.id} value={item.name}>
+              {item.name}
+            </option>
           ))}
-        </StyledMenu>
-      </div>
-      <div className={classes.value}>
-        <Button onClick={handleMenuThreeOpen}>{valueThree.text}</Button>
-        <StyledMenu
-          anchorEl={valueThree.anchorEl}
-          keepMounted
-          open={Boolean(valueThree.anchorEl)}
-          onClose={handleMenuThreeClose}
+        </NativeSelect>
+        <FormHelperText>Select Second Value</FormHelperText>
+      </FormControl>
+      <FormControl>
+        <InputLabel id="third-value">Third Value</InputLabel>
+        <NativeSelect
+          value={topThreeValues.valueThree.name}
+          labelId="third-value"
+          onChange={handleChange("valueThree")}
         >
-          {notNarrowed.map(item => (
-            <StyledMenuItem onClick={handleMenuThreeSelect(item)}>
-              <ListItemText primary={item.name} />
-            </StyledMenuItem>
+          {selectedvalues.map(item => (
+            <option key={item.id} value={item.name}>
+              {item.name}
+            </option>
           ))}
-        </StyledMenu>
-      </div>
-    </>
+        </NativeSelect>
+        <FormHelperText>Select Third Value</FormHelperText>
+      </FormControl>
+    </div>
   );
 };
 
