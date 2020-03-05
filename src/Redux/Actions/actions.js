@@ -10,7 +10,8 @@ import {
   LOG_USER_OUT,
   OTHER_VALUE,
   ADD_OTHER,
-  SUBMIT_PROJECT
+  SUBMIT_PROJECT,
+  START_EDIT_PROJECT
 } from "./types";
 import Axios from "axios";
 
@@ -69,4 +70,8 @@ export const selectTopThree = values => dispatch => {
 
 export const submitProject = project => dispatch => {
   dispatch({ type: SUBMIT_PROJECT, payload: project });
+};
+
+export const startEditingProject = projectEditingId => dispatch => {
+  dispatch({ type: START_EDIT_PROJECT, payload: projectEditingId });
 };
