@@ -25,7 +25,7 @@ const Narrow = () => {
   useEffect(() => {
     const topThreeArr = Object.values(topThreeValues);
     console.log(`topThreeArr: `, topThreeArr);
-    dispatch(selectTopThree(topThreeArr));
+    dispatch(selectedTopThree(topThreeArr));
   }, [topThreeValues]);
 
   const handleChange = name => evt => {
