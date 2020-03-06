@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProjects } from "../../Redux/Actions";
 import {
   Stepper,
   Step,
@@ -13,6 +14,9 @@ import Narrow from "./Narrow";
 import Submission from "../projects/Submission";
 
 const Process = () => {
+  const dispatch = useDispatch();
+  const userid = useSelector(state => state.user.user.userid);
+  console.log(userid);
   const useStyles = makeStyles(theme => ({
     root: {
       width: "100%",
@@ -54,6 +58,12 @@ const Process = () => {
     }
   };
 
+  useEffect(() => {
+    if (activeStep === 2) {
+      dispatch(fetchProjects(userid));
+    }
+  }, [activeStep]);
+
   const handleNext = evt => {
     evt.preventDefault();
     setActiveStep(prevActiveStep => prevActiveStep + 1);
@@ -82,6 +92,9 @@ const Process = () => {
             <Typography className={classes.instructions}>
               All Steps Completed
             </Typography>
+            <Button onClick={evt => evt.preventDefault}>
+              View your Dashboard
+            </Button>
           </div>
         ) : (
           <>

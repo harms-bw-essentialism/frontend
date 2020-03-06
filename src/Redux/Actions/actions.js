@@ -11,7 +11,10 @@ import {
   OTHER_VALUE,
   ADD_OTHER,
   SUBMIT_PROJECT,
-  START_EDIT_PROJECT
+  START_EDIT_PROJECT,
+  FETCH_PROJECTS,
+  FETCH_PROJECTS_SUCCESS,
+  FETCH_PROJECTS_FAILURE
 } from "./types";
 import Axios from "axios";
 
@@ -53,6 +56,7 @@ export const registerUser = userCredentials => dispatch => {
 };
 
 export const logoutUser = dispatch => {
+  localStorage.removeItem("state");
   dispatch({ type: LOG_USER_OUT });
 };
 
@@ -66,6 +70,19 @@ export const addOther = value => dispatch => {
 
 export const selectTopThree = values => dispatch => {
   dispatch({ type: TOP_THREE_VALUE, payload: values });
+};
+
+export const fetchProjects = userId => dispatch => {
+  dispatch({ type: FETCH_PROJECTS });
+  Axios.get(
+    `https://essentialism2020.herokuapp.com/api/essentialism/projects/user/${userId}`
+  )
+    .then(res => {
+      dispatch({ type: FETCH_PROJECTS_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: FETCH_PROJECTS_FAILURE, payload: err.message });
+    });
 };
 
 export const submitProject = project => dispatch => {

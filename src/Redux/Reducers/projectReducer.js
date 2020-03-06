@@ -1,11 +1,16 @@
 import {
   SUBMIT_PROJECT,
   START_EDIT_PROJECT,
-  FINISH_EDIT_PROJECT
+  FINISH_EDIT_PROJECT,
+  FETCH_PROJECTS,
+  FETCH_PROJECTS_SUCCESS,
+  FETCH_PROJECTS_FAILURE
 } from "../Actions";
 
 const initialState = {
-  projects: []
+  isFetching: false,
+  projects: [],
+  error: null
 };
 
 export const projectReducer = (state = initialState, { type, payload }) => {
@@ -38,6 +43,27 @@ export const projectReducer = (state = initialState, { type, payload }) => {
     case FINISH_EDIT_PROJECT:
       return {
         ...state
+      };
+    case FETCH_PROJECTS:
+      return {
+        ...state,
+        isFetching: true,
+        projects: [],
+        error: null
+      };
+    case FETCH_PROJECTS_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        projects: payload,
+        error: null
+      };
+    case FETCH_PROJECTS_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        projects: [],
+        error: payload
       };
     default:
       return state;

@@ -8,30 +8,48 @@ import {
   InputLabel,
   TextField,
   TextareaAutosize,
-  Button
+  Button,
+  Paper,
+  CardContent,
+  Card,
+  Typography
 } from "@material-ui/core";
-import Projects from "./Projects";
 
 function Submission() {
-  const dispatch = useDispatch();
-  const topThree = useSelector(state => state.values.topThreeValues);
-  const [newProject, setNewProject] = useState({
-    name: null,
-    description: null,
-    value: topThree[0].name
-  });
-
-  const handleSubmit = project => {
-    dispatch(submitProject(project));
-    setNewProject({ name: "", description: "", value: topThree[0].name });
+  const SubmittedProjects = () => {
+    const userProjects = useSelector(state => state.projects.projects);
+    return (
+      <Paper>
+        {userProjects.map(project => (
+          <Card key={project.id}>
+            <CardContent>
+              <Typography>{project.projectName}</Typography>
+              <Typography>{project.projectDescription}</Typography>
+              {/* <Typography>{project.projectValue}</Typography> */}
+            </CardContent>
+          </Card>
+        ))}
+      </Paper>
+    );
   };
 
-  const handleChange = key => evt => {
-    setNewProject({ ...newProject, [key]: evt.target.value });
-  };
+  const SubmissionForm = () => {
+    const dispatch = useDispatch();
+    const [newProject, setNewProject] = useState({
+      name: null,
+      description: null,
+      value: topThree[0].name
+    });
 
-  return (
-    <>
+    const handleSubmit = project => {
+      dispatch(submitProject(project));
+      setNewProject({ name: "", description: "", value: topThree[0].name });
+    };
+
+    const handleChange = key => evt => {
+      setNewProject({ ...newProject, [key]: evt.target.value });
+    };
+    return (
       <FormControl>
         <InputLabel>Project Name</InputLabel>
         <TextField onChange={handleChange(`name`)} value={newProject.name} />
@@ -57,7 +75,14 @@ function Submission() {
           Add Project
         </Button>
       </FormControl>
-      {topThree.length ? <Projects /> : null}
+    );
+  };
+
+  const topThree = useSelector(state => state.values.topThreeValues);
+  return (
+    <>
+      <SubmissionForm />
+      {topThree.length ? <SubmittedProjects /> : null}
     </>
   );
 }
