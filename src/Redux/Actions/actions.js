@@ -17,6 +17,7 @@ import {
   FETCH_PROJECTS_FAILURE
 } from "./types";
 import Axios from "axios";
+import { axiosWithAuth } from "../../Common/Utils/axiosWithAuth";
 
 export const selectValue = item => dispatch => {
   dispatch({ type: SELECT_VALUE, payload: item });
@@ -74,14 +75,15 @@ export const selectTopThree = values => dispatch => {
 
 export const fetchProjects = userId => dispatch => {
   dispatch({ type: FETCH_PROJECTS });
-  Axios.get(
-    `https://essentialism2020.herokuapp.com/api/essentialism/projects/user/${userId}`
-  )
+  axiosWithAuth()
+    .get(
+      `https://essentialism2020.herokuapp.com/api/essentialism/projects/user/${userId}`
+    )
     .then(res => {
       dispatch({ type: FETCH_PROJECTS_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: FETCH_PROJECTS_FAILURE, payload: err.message });
+      dispatch({ type: FETCH_PROJECTS_FAILURE, payload: err });
     });
 };
 

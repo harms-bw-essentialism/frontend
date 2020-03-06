@@ -17,10 +17,11 @@ const store = createStore(
 
 store.subscribe(
   throttle(() => {
+    localStorage.setItem("token", store.getState().user.user.token);
     saveState(
       store.getState({
         values: store.getState().values,
-        token: store.getState().user.token
+        token: store.getState().user.user.token
       })
     );
   }, 1000)

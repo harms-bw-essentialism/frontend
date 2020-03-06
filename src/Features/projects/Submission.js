@@ -21,7 +21,7 @@ function Submission() {
     return (
       <Paper>
         {userProjects.map(project => (
-          <Card key={project.id}>
+          <Card key={project.projectid}>
             <CardContent>
               <Typography>{project.projectName}</Typography>
               <Typography>{project.projectDescription}</Typography>

@@ -22,8 +22,8 @@ export const projectReducer = (state = initialState, { type, payload }) => {
           ...state.projects,
           {
             id: state.projects.length,
-            name: payload.name,
-            description: payload.description,
+            projectName: payload.name,
+            projectDescription: payload.description,
             value: payload.value,
             isEditing: false,
             isDeleting: false
