@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import { Paper } from "@material-ui/core";
 // import { withStyles } from '@material-ui/core/styles';
-// import { Edit, Delete } from '@material-ui/icons';
+import DeleteIcon from "@material-ui/icons/Delete";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
@@ -30,7 +30,7 @@ const Projects = () => {
                 color="primary"
                 onClick={() => ondeviceorientationabsolute(projectId)}
               >
-                <Delete />
+                <DeleteIcon />
               </IconButton>
             </ListItemSecondaryAction>
           </ListItem>
