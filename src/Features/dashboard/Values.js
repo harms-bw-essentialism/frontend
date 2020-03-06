@@ -10,7 +10,6 @@ import {
 import { Paper } from "@material-ui/core";
 // import { withStyles } from '@material-ui/core/styles';
 // import { Edit, DeleteIcon } from "@material-ui/icons";
-import axios from "axios";
 import Projects from "./Projects";
 import { useSelector } from "react-redux";
 const styles = {};

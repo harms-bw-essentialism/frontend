@@ -1,7 +1,7 @@
-import LoginForm from "../Features/onboarding/LoginForm";
-import Process from "../Features/values/Process";
-import RegisterForm from "../Features/onboarding/RegisterForm";
-import Dashboard from "../Features/dashboard/Dashboard";
+import LoginForm from "../Features/Onboarding/LoginForm";
+import RegisterForm from "../Features/Onboarding/RegisterForm";
+import Process from "../Features/SelectValues/Process";
+import Dashboard from "../Features/Dashboard/Dashboard";
 
 const Routes = [
   {

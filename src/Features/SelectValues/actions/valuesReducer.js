@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/Redux/Reducers/valueReducer.js
 import {
   SELECT_VALUE,
   TOP_THREE_VALUE,
@@ -7,6 +8,9 @@ import {
   FETCH_VALUES_SUCCESS,
   FETCH_VALUES_FAILURE
 } from "../Actions/types";
+=======
+import { SELECT_VALUE, TOP_THREE_VALUE, OTHER_VALUE, ADD_OTHER } from "./types";
+>>>>>>> dfad2922f298b05c2a20d762fe697387d3e9e735:src/Features/SelectValues/actions/valuesReducer.js
 
 const initialState = {
   values: [
@@ -35,7 +39,7 @@ const initialState = {
   isFetching: false
 };
 
-export const valueReducer = (state = initialState, { type, payload }) => {
+export const valuesReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case SELECT_VALUE:
       const newValues = state.values.map(item => {

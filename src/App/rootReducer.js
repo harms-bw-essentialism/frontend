@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import { valueReducer } from "../Redux/Reducers/valueReducer";
-import { userReducer } from "../Redux/Reducers/userReducer";
-import { projectReducer } from "../Redux/Reducers/projectReducer";
+import { onBoardingReducer } from "../Features/Onboarding/actions/onBoardingReducer";
+import { projectsReducer } from "../Features/InputProjects/actions/projectsReducer";
+import { valuesReducer } from "../Features/SelectValues/actions/valuesReducer";
 
 export default combineReducers({
-  values: valueReducer,
-  user: userReducer,
-  projects: projectReducer
+  user: onBoardingReducer,
+  values: valuesReducer,
+  projects: projectsReducer
 });

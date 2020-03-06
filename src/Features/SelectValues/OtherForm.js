@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addOther } from "../../Redux/Actions";
+import { addOtherValue } from "./actions";
 import { Button, TextField } from "@material-ui/core";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -10,7 +10,7 @@ const OtherForm = props => {
 
   const addValue = newValue => evt => {
     evt.preventDefault();
-    dispatch(addOther(newValue));
+    dispatch(addOtherValue(newValue));
   };
 
   return (

@@ -5,7 +5,7 @@ import {
   FETCH_PROJECTS,
   FETCH_PROJECTS_SUCCESS,
   FETCH_PROJECTS_FAILURE
-} from "../Actions";
+} from "./types";
 
 const initialState = {
   isFetching: false,
@@ -13,7 +13,7 @@ const initialState = {
   error: null
 };
 
-export const projectReducer = (state = initialState, { type, payload }) => {
+export const projectsReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case SUBMIT_PROJECT:
       return {

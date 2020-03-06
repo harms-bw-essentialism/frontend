@@ -1,12 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "./actions";
 import { Link, useHistory, Redirect } from "react-router-dom";
-import { registerUser } from "../../Redux/Actions";
 import { TextField, Button } from "@material-ui/core";
-import axios from "axios";
+
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Paper from "@material-ui/core/Paper";
-import { useDispatch, useSelector } from "react-redux";
 
 const RegisterForm = props => {
   const { classes } = props;
