@@ -1,4 +1,3 @@
-<<<<<<< HEAD:src/Redux/Reducers/valueReducer.js
 import {
   SELECT_VALUE,
   TOP_THREE_VALUE,
@@ -6,11 +5,11 @@ import {
   ADD_OTHER,
   FETCH_VALUES,
   FETCH_VALUES_SUCCESS,
-  FETCH_VALUES_FAILURE
-} from "../Actions/types";
-=======
-import { SELECT_VALUE, TOP_THREE_VALUE, OTHER_VALUE, ADD_OTHER } from "./types";
->>>>>>> dfad2922f298b05c2a20d762fe697387d3e9e735:src/Features/SelectValues/actions/valuesReducer.js
+  FETCH_VALUES_FAILURE,
+  SUBMIT_VALUE,
+  SUBMIT_VALUE_FAILURE,
+  SUBMIT_VALUE_SUCCESS
+} from "./types";
 
 const initialState = {
   values: [
@@ -36,7 +35,9 @@ const initialState = {
   ],
   isOther: false,
   topThreeValues: [],
-  isFetching: false
+  isFetching: false,
+  isSubmitting: false,
+  error: null
 };
 
 export const valuesReducer = (state = initialState, { type, payload }) => {
@@ -70,7 +71,6 @@ export const valuesReducer = (state = initialState, { type, payload }) => {
         isOther: false
       };
     case TOP_THREE_VALUE:
-      console.log(payload);
       return {
         ...state,
         topThreeValues: [...payload]
@@ -90,6 +90,22 @@ export const valuesReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isfetching: false,
+        error: payload
+      };
+    case SUBMIT_VALUE:
+      return {
+        ...state,
+        isSubmitting: true
+      };
+    case SUBMIT_VALUE_SUCCESS:
+      return {
+        ...state,
+        isSubmitting: false
+      };
+    case SUBMIT_VALUE_FAILURE:
+      return {
+        ...state,
+        isSubmitting: false,
         error: payload
       };
     default:
