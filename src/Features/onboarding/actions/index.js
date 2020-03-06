@@ -7,14 +7,15 @@ import {
   REGISTER_NEW_USER_FAILURE,
   LOG_USER_OUT
 } from "./types";
-import axios from axios
+import axios from "axios";
 
 export const loginUser = userCredentials => dispatch => {
   dispatch({ type: LOG_USER_IN });
-  axios.post(
-    `https://essentialism2020.herokuapp.com/api/essentialism/user/login`,
-    userCredentials
-  )
+  axios
+    .post(
+      `https://essentialism2020.herokuapp.com/api/essentialism/user/login`,
+      userCredentials
+    )
     .then(res => {
       dispatch({ type: LOG_USER_IN_SUCCESS, payload: res.data });
     })
@@ -25,10 +26,11 @@ export const loginUser = userCredentials => dispatch => {
 
 export const registerUser = userCredentials => dispatch => {
   dispatch({ type: REGISTER_NEW_USER });
-  axios.post(
-    `https://essentialism2020.herokuapp.com/api/essentialism/user/register`,
-    userCredentials
-  )
+  axios
+    .post(
+      `https://essentialism2020.herokuapp.com/api/essentialism/user/register`,
+      userCredentials
+    )
     .then(res => {
       dispatch({ type: REGISTER_NEW_USER_SUCCESS, payload: res.data });
       dispatch(loginUser(userCredentials));

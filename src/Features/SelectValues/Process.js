@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProjects } from "../../Redux/Actions";
+import { fetchProjects } from "../InputProjects/actions/";
 import {
   Stepper,
   Step,
@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import Selection from "./Selection";
 import Narrow from "./Narrow";
-import Submission from "../projects/Submission";
+import Submission from "../InputProjects/Submission";
 
 const Process = () => {
   const dispatch = useDispatch();

@@ -7,7 +7,7 @@ import {
   Input
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { selectTopThree } from "../../Redux/Actions";
+import { selectTopThree } from "./actions";
 
 const Narrow = () => {
   const dispatch = useDispatch();

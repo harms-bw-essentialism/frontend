@@ -1,9 +1,4 @@
-import {
-  SELECT_VALUE,
-  TOP_THREE_VALUE,
-  OTHER_VALUE,
-  ADD_OTHER
-} from "../Actions/types";
+import { SELECT_VALUE, TOP_THREE_VALUE, OTHER_VALUE, ADD_OTHER } from "./types";
 
 const initialState = {
   values: [
@@ -31,7 +26,7 @@ const initialState = {
   topThreeValues: []
 };
 
-export const valueReducer = (state = initialState, { type, payload }) => {
+export const valuesReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case SELECT_VALUE:
       const newValues = state.values.map(item => {
