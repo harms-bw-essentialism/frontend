@@ -2,7 +2,10 @@ import {
   SELECT_VALUE,
   TOP_THREE_VALUE,
   OTHER_VALUE,
-  ADD_OTHER
+  ADD_OTHER,
+  FETCH_VALUES,
+  FETCH_VALUES_SUCCESS,
+  FETCH_VALUES_FAILURE
 } from "../Actions/types";
 
 const initialState = {
@@ -28,7 +31,8 @@ const initialState = {
     { id: 16, name: "Relationships", selected: false, valueTopThree: false }
   ],
   isOther: false,
-  topThreeValues: []
+  topThreeValues: [],
+  isFetching: false
 };
 
 export const valueReducer = (state = initialState, { type, payload }) => {
@@ -66,6 +70,23 @@ export const valueReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         topThreeValues: [...payload]
+      };
+    case FETCH_VALUES:
+      return {
+        ...state,
+        isFetching: true
+      };
+    case FETCH_VALUES_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        topThreeValues: payload
+      };
+    case FETCH_VALUES_FAILURE:
+      return {
+        ...state,
+        isfetching: false,
+        error: payload
       };
     default:
       return state;

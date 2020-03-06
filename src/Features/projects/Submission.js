@@ -25,7 +25,7 @@ function Submission() {
             <CardContent>
               <Typography>{project.projectName}</Typography>
               <Typography>{project.projectDescription}</Typography>
-              {/* <Typography>{project.projectValue}</Typography> */}
+              <Typography>{project.value}</Typography>
             </CardContent>
           </Card>
         ))}

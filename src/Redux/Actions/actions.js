@@ -14,7 +14,10 @@ import {
   START_EDIT_PROJECT,
   FETCH_PROJECTS,
   FETCH_PROJECTS_SUCCESS,
-  FETCH_PROJECTS_FAILURE
+  FETCH_PROJECTS_FAILURE,
+  FETCH_VALUES,
+  FETCH_VALUES_SUCCESS,
+  FETCH_VALUES_FAILURE
 } from "./types";
 import Axios from "axios";
 import { axiosWithAuth } from "../../Common/Utils/axiosWithAuth";
@@ -93,4 +96,16 @@ export const submitProject = project => dispatch => {
 
 export const startEditingProject = projectEditingId => dispatch => {
   dispatch({ type: START_EDIT_PROJECT, payload: projectEditingId });
+};
+
+export const fetchValues = userid => dispatch => {
+  dispatch({ type: FETCH_VALUES });
+  axiosWithAuth()
+    .get(
+      `https://essentialism2020.herokuapp.com/api/essentialism/values/user/${userid}`
+    )
+    .then(res => {
+      dispatch({ type: FETCH_VALUES_SUCCESS, payload: res.data });
+    })
+    .catch(err => dispatch({ type: FETCH_VALUES_FAILURE, payload: err }));
 };
