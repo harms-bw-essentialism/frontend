@@ -6,7 +6,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Paper from "@material-ui/core/Paper";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../Redux/Actions";
+import { loginUser } from "./actions";
 
 const LoginForm = props => {
   // const classes = useStyles();
