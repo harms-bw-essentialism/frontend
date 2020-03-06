@@ -9,23 +9,14 @@ import {
 } from "@material-ui/core";
 import { Paper } from "@material-ui/core";
 // import { withStyles } from '@material-ui/core/styles';
-// import { Edit, Delete } from '@material-ui/icons';
+import { Edit, DeleteIcon } from "@material-ui/icons";
 import axios from "axios";
 import Projects from "./Projects";
-
+import { useSelector } from "react-redux";
 const styles = {};
 
 const Values = () => {
-  const [values, setValues] = useState();
-
-  useEffect(() => {
-    axios
-      .get(
-        "https://essentialism2020.herokuapp.com/api/essentialism/values/user/:id"
-      )
-      .then(response => setValues(response.data.results))
-      .catch(err => console.log("Error", err));
-  }, []);
+  const values = useSelector(state => state.values.values);
 
   return (
     <React.Fragment>
