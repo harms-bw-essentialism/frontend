@@ -25,14 +25,14 @@ const Projects = () => {
           //   <ListItem key={projectId} button onClick={() => onSelect(projectId)}>
           <ListItem key={projectId} button onClick={() => {}}>
             <ListItemText primary={projectName} />
-            <ListItemSecondAction>
+            <ListItemSecondaryAction>
               <IconButton
                 color="primary"
                 onClick={() => ondeviceorientationabsolute(projectId)}
               >
                 <Delete />
               </IconButton>
-            </ListItemSecondAction>
+            </ListItemSecondaryAction>
           </ListItem>
         ))}
       </List>
