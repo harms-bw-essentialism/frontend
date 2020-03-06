@@ -1,3 +1,4 @@
+import jwt_decode from "jwt-decode";
 import {
   LOG_USER_IN,
   LOG_USER_IN_SUCCESS,
@@ -10,7 +11,7 @@ import {
 
 const initialState = {
   user: {
-    userId: null,
+    userid: null,
     token: null,
     username: null
   },
@@ -29,13 +30,14 @@ export const userReducer = (state = initialState, { type, payload }) => {
         error: null
       };
     case LOG_USER_IN_SUCCESS:
+      const decodedToken = jwt_decode(payload.token);
+      console.log(decodedToken.userid);
       return {
         ...state,
         user: {
           ...state.user,
           token: payload.token,
-          username: payload.username,
-          userId: payload.userId
+          userid: decodedToken.userid
         },
         isLoggingIn: false,
         isLoggedIn: true,
