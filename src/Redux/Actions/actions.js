@@ -1,13 +1,20 @@
 import {
   SELECT_VALUE,
-  NARROW_VALUE,
+  TOP_THREE_VALUE,
   LOG_USER_IN,
   LOG_USER_IN_SUCCESS,
   LOG_USER_IN_FAILURE,
   REGISTER_NEW_USER,
   REGISTER_NEW_USER_SUCCESS,
   REGISTER_NEW_USER_FAILURE,
-  LOG_USER_OUT
+  LOG_USER_OUT,
+  OTHER_VALUE,
+  ADD_OTHER,
+  SUBMIT_PROJECT,
+  START_EDIT_PROJECT,
+  FETCH_PROJECTS,
+  FETCH_PROJECTS_SUCCESS,
+  FETCH_PROJECTS_FAILURE
 } from "./types";
 import Axios from "axios";
 
@@ -16,7 +23,7 @@ export const selectValue = item => dispatch => {
 };
 
 export const narrowValue = item => dispatch => {
-  dispatch({ type: NARROW_VALUE, payload: item });
+  dispatch({ type: TOP_THREE_VALUE, payload: item });
 };
 
 export const loginUser = userCredentials => dispatch => {
@@ -49,5 +56,39 @@ export const registerUser = userCredentials => dispatch => {
 };
 
 export const logoutUser = dispatch => {
+  localStorage.removeItem("state");
   dispatch({ type: LOG_USER_OUT });
+};
+
+export const toggleOtherInput = bool => dispatch => {
+  dispatch({ type: OTHER_VALUE, payload: bool });
+};
+
+export const addOther = value => dispatch => {
+  dispatch({ type: ADD_OTHER, payload: value });
+};
+
+export const selectTopThree = values => dispatch => {
+  dispatch({ type: TOP_THREE_VALUE, payload: values });
+};
+
+export const fetchProjects = userId => dispatch => {
+  dispatch({ type: FETCH_PROJECTS });
+  Axios.get(
+    `https://essentialism2020.herokuapp.com/api/essentialism/projects/user/${userId}`
+  )
+    .then(res => {
+      dispatch({ type: FETCH_PROJECTS_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: FETCH_PROJECTS_FAILURE, payload: err.message });
+    });
+};
+
+export const submitProject = project => dispatch => {
+  dispatch({ type: SUBMIT_PROJECT, payload: project });
+};
+
+export const startEditingProject = projectEditingId => dispatch => {
+  dispatch({ type: START_EDIT_PROJECT, payload: projectEditingId });
 };
