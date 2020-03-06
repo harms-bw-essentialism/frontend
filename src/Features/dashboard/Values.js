@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 import { Paper } from "@material-ui/core";
 // import { withStyles } from '@material-ui/core/styles';
-import { Edit, DeleteIcon } from "@material-ui/icons";
+// import { Edit, DeleteIcon } from "@material-ui/icons";
 import axios from "axios";
 import Projects from "./Projects";
 import { useSelector } from "react-redux";
@@ -24,7 +24,7 @@ const Values = () => {
         {values.map(value => (
           <React.Fragment key={value.valueId}>
             <Typography
-              className={classes.valueName}
+              //   className={classes.valueName}
               color="secondary"
               variant="h5"
             >
