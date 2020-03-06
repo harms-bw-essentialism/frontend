@@ -1,11 +1,13 @@
 import React from "react";
-import Projects from "../projects/Projects";
+import Projects from "./Projects";
+import Values from "./Values";
 
 const Dashboard = () => {
   return (
-    <div>
+    <>
       <Projects />
-    </div>
+      <Values />
+    </>
   );
 };
 
