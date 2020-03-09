@@ -6,7 +6,15 @@ import {
   FETCH_PROJECTS,
   FETCH_PROJECTS_SUCCESS,
   FETCH_PROJECTS_FAILURE,
-  EDIT_PROJECT
+  FETCH_EDIT_PROJECT,
+  FETCH_EDIT_PROJECT_SUCCESS,
+  FETCH_EDIT_PROJECT_FAILURE,
+  EDIT_PROJECT,
+  EDIT_PROJECT_SUCCESS,
+  EDIT_PROJECT_FAILURE,
+  DELETE_PROJECT,
+  DELETE_PROJECT_SUCCESS,
+  DELETE_PROJECT_FAILURE
 } from "./types";
 
 import { axiosWithAuth } from "../../../Common/Utils/axiosWithAuth";
@@ -39,27 +47,49 @@ export const submitProject = project => dispatch => {
     .catch(err => dispatch({ type: SUBMIT_PROJECT_FAILURE, payload: err }));
 };
 
-// export const startEditingProject = projectEditingId => dispatch => {
-//   dispatch({ type: START_EDIT_PROJECT, payload: projectEditingId });
-// };
+export const fetchEditingProject = projectid => dispatch => {
+  dispatch({ type: FETCH_EDIT_PROJECT });
+  axiosWithAuth()
+    .get(
+      `https://essentialism2020.herokuapp.com/api/essentialism/projects/${projectid}`
+    )
+    .then(res => {
+      dispatch({ type: FETCH_EDIT_PROJECT_SUCCESS, payload: res.data });
+    })
+    .catch(err => dispatch({ type: FETCH_EDIT_PROJECT_FAILURE, payload: err }));
+};
 
-// export const editProject = (projectid, changes) => dispatch => {
-//   dispatch({ type: EDIT_PROJECT });
-//   axiosWithAuth()
-//     .put(`https://essentialism.herokuapp.com/api/essentialism/projects`)
-//     .then()
-//     .catch();
-// };
+export const editProject = (projectId, projectChanges) => dispatch => {
+  console.log(`projectId: `, projectId);
+  const changes = {
+    projectName: projectChanges.projectName,
+    projectDescription: projectChanges.projectDescription,
+    userId: projectChanges.userId,
+    value: projectChanges.value
+  };
+  console.log(`changes: `, changes);
+  dispatch({ type: EDIT_PROJECT });
+  axiosWithAuth()
+    .put(
+      `https://essentialism.herokuapp.com/api/essentialism/projects/${projectId}`,
+      changes
+    )
+    .then(res => {
+      dispatch({ type: EDIT_PROJECT_SUCCESS });
+      dispatch(fetchProjects(changes.userId));
+    })
+    .catch(err => dispatch({ type: EDIT_PROJECT_FAILURE, payload: err }));
+};
 
-// export const deleteProject = (projectid, userid) => dispatch => {
-//   dispatch({ type: DELETE_PROJECT });
-//   axiosWithAuth()
-//     .delete(
-//       `https://essentialism.herokuapp.com/api/essentialism/projects/${projectid}`
-//     )
-//     .then(res => {
-//       dispatch({ type: DELETE_PROJECT_SUCCESS });
-//       dispatch(fetchProjects(userid));
-//     })
-//     .catch(err => dispatch({ type: DELETE_PROJECT_FAILURE, payload: err }));
-// };
+export const deleteProject = (projectid, userid) => dispatch => {
+  dispatch({ type: DELETE_PROJECT });
+  axiosWithAuth()
+    .delete(
+      `https://essentialism.herokuapp.com/api/essentialism/projects/${projectid}`
+    )
+    .then(res => {
+      dispatch({ type: DELETE_PROJECT_SUCCESS });
+      dispatch(fetchProjects(userid));
+    })
+    .catch(err => dispatch({ type: DELETE_PROJECT_FAILURE, payload: err }));
+};
