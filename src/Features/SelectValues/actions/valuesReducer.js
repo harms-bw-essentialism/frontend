@@ -13,25 +13,24 @@ import {
 
 const initialState = {
   values: [
-    { id: 0, name: "Athletics", selected: false, valueTopThree: false },
-    { id: 1, name: "Art", selected: false, valueTopThree: false },
-    { id: 2, name: "Career", selected: false, valueTopThree: false },
-    { id: 3, name: "Creativity", selected: false, valueTopThree: false },
-    { id: 4, name: "Community", selected: false, valueTopThree: false },
-    { id: 5, name: "Education", selected: false, valueTopThree: false },
-    { id: 6, name: "Friends", selected: false, valueTopThree: false },
-    { id: 7, name: "Family", selected: false, valueTopThree: false },
-    { id: 8, name: "Humor", selected: false, valueTopThree: false },
-    { id: 9, name: "Independence", selected: false, valueTopThree: false },
-    { id: 10, name: "Kindness", selected: false, valueTopThree: false },
-    { id: 14, name: "Moral Principles", selected: false, valueTopThree: false },
+    { id: 0, valueName: "Athletics", selected: false },
+    { id: 1, valueName: "Art", selected: false },
+    { id: 2, valueName: "Career", selected: false },
+    { id: 3, valueName: "Creativity", selected: false },
+    { id: 4, valueName: "Community", selected: false },
+    { id: 5, valueName: "Education", selected: false },
+    { id: 6, valueName: "Friends", selected: false },
+    { id: 7, valueName: "Family", selected: false },
+    { id: 8, valueName: "Humor", selected: false },
+    { id: 9, valueName: "Independence", selected: false },
+    { id: 10, valueName: "Kindness", selected: false },
+    { id: 14, valueName: "Moral Principles", selected: false },
     {
       id: 15,
-      name: "Nature/Environment",
-      selected: false,
-      valueTopThree: false
+      valueName: "Nature/Environment",
+      selected: false
     },
-    { id: 16, name: "Relationships", selected: false, valueTopThree: false }
+    { id: 16, valueName: "Relationships", selected: false }
   ],
   isOther: false,
   topThreeValues: [],
@@ -61,9 +60,8 @@ export const valuesReducer = (state = initialState, { type, payload }) => {
     case ADD_OTHER:
       const newValue = {
         id: state.values.length,
-        name: payload,
-        selected: true,
-        valueTopThree: false
+        valueName: payload,
+        selected: true
       };
       return {
         ...state,

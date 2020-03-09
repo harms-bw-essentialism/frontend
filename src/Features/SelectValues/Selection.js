@@ -55,7 +55,7 @@ const Selection = () => {
         <List className={classes.scroll}>
           {values.map(item => (
             <ListItem key={item.id} onClick={handleSelect(item)}>
-              <ListItemText>{item.name}</ListItemText>
+              <ListItemText>{item.valueName}</ListItemText>
               <ListItemIcon>
                 {item.selected ? <FavoriteIcon /> : <FavoriteBorderIcon />}
               </ListItemIcon>

@@ -1,11 +1,15 @@
 import {
   SUBMIT_PROJECT,
+  SUBMIT_PROJECT_SUCCESS,
+  SUBMIT_PROJECT_FAILURE,
   START_EDIT_PROJECT,
   FETCH_PROJECTS,
   FETCH_PROJECTS_SUCCESS,
-  FETCH_PROJECTS_FAILURE
+  FETCH_PROJECTS_FAILURE,
+  EDIT_PROJECT
 } from "./types";
 import axios from "axios";
+import { axiosWithAuth } from "../../../Common/Utils/axiosWithAuth";
 
 export const fetchProjects = userId => dispatch => {
   dispatch({ type: FETCH_PROJECTS });
@@ -22,9 +26,26 @@ export const fetchProjects = userId => dispatch => {
 };
 
 export const submitProject = project => dispatch => {
-  dispatch({ type: SUBMIT_PROJECT, payload: project });
+  dispatch({ type: SUBMIT_PROJECT });
+  axiosWithAuth()
+    .post(
+      `https://essentialism2020.herokuapp.com/api/essentialism/projects/`,
+      project
+    )
+    .then(res => {
+      dispatch({ type: SUBMIT_PROJECT_SUCCESS });
+      dispatch(fetchProjects(project.userId));
+    })
+    .catch(err => dispatch({ type: SUBMIT_PROJECT_FAILURE, payload: err }));
 };
 
 export const startEditingProject = projectEditingId => dispatch => {
   dispatch({ type: START_EDIT_PROJECT, payload: projectEditingId });
+};
+
+export const editProject = (projectid, changes) => dispatch => {
+  dispatch({ type: EDIT_PROJECT });
+  axiosWithAuth().put(
+    `https://essentialism.herokuapp.com/api/essentialism/projects`
+  );
 };

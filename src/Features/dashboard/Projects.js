@@ -17,6 +17,10 @@ const styles = {};
 const Projects = () => {
   const projects = useSelector(state => state.projects.projects);
 
+  // projects.forEach((project, index) => {
+  //   console.log(project, index);
+  // });
+
   return (
     <React.Fragment>
       <List component="ul">

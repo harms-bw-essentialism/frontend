@@ -34,16 +34,22 @@ function Submission() {
   };
 
   const SubmissionForm = () => {
+    const userId = useSelector(state => state.user.user.userid);
     const dispatch = useDispatch();
     const [newProject, setNewProject] = useState({
-      name: null,
-      description: null,
-      value: topThree[0].name
+      projectName: null,
+      projectDescription: null,
+      value: topThree[0].valueName,
+      userId: userId
     });
 
     const handleSubmit = project => {
       dispatch(submitProject(project));
-      setNewProject({ name: "", description: "", value: topThree[0].name });
+      setNewProject({
+        projectName: "",
+        projectDescription: "",
+        value: topThree[0].name
+      });
     };
 
     const handleChange = key => evt => {
@@ -52,18 +58,21 @@ function Submission() {
     return (
       <FormControl>
         <InputLabel>Project Name</InputLabel>
-        <TextField onChange={handleChange(`name`)} value={newProject.name} />
+        <TextField
+          onChange={handleChange(`projectName`)}
+          value={newProject.projectName}
+        />
         <Divider />
         <InputLabel>Project Description</InputLabel>
         <TextareaAutosize
-          onChange={handleChange(`description`)}
-          value={newProject.description}
+          onChange={handleChange(`projectDescription`)}
+          value={newProject.projectDescription}
         />
         <Divider />
         <InputLabel>Project Value Alignment</InputLabel>
         <NativeSelect onChange={handleChange(`value`)} value={newProject.value}>
           {topThree.map(item => (
-            <option>{item.name}</option>
+            <option>{item.valueName}</option>
           ))}
         </NativeSelect>
         <Button

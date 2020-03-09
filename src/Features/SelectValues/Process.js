@@ -12,10 +12,12 @@ import {
 import Selection from "./Selection";
 import Narrow from "./Narrow";
 import Submission from "../InputProjects/Submission";
+import { submitValue } from "./actions";
 
 const Process = () => {
   const dispatch = useDispatch();
   const userid = useSelector(state => state.user.user.userid);
+  const narrowedValues = useSelector(state => state.values.topThreeValues);
   console.log(userid);
   const useStyles = makeStyles(theme => ({
     root: {
@@ -60,6 +62,9 @@ const Process = () => {
 
   useEffect(() => {
     if (activeStep === 2) {
+      narrowedValues.forEach(value => {
+        dispatch(submitValue(value));
+      });
       dispatch(fetchProjects(userid));
     }
   }, [activeStep]);

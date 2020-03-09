@@ -1,5 +1,7 @@
 import {
   SUBMIT_PROJECT,
+  SUBMIT_PROJECT_SUCCESS,
+  SUBMIT_PROJECT_FAILURE,
   START_EDIT_PROJECT,
   FINISH_EDIT_PROJECT,
   FETCH_PROJECTS,
@@ -9,6 +11,7 @@ import {
 
 const initialState = {
   isFetching: false,
+  isSubmitting: false,
   projects: [],
   error: null
 };
@@ -18,17 +21,19 @@ export const projectsReducer = (state = initialState, { type, payload }) => {
     case SUBMIT_PROJECT:
       return {
         ...state,
-        projects: [
-          ...state.projects,
-          {
-            id: state.projects.length,
-            projectName: payload.name,
-            projectDescription: payload.description,
-            value: payload.value,
-            isEditing: false,
-            isDeleting: false
-          }
-        ]
+        isSubmitting: true
+      };
+    case SUBMIT_PROJECT_SUCCESS:
+      return {
+        ...state,
+        isSubmitting: false,
+        error: null
+      };
+    case SUBMIT_PROJECT_FAILURE:
+      return {
+        ...state,
+        isSubmitting: false,
+        error: payload
       };
     case START_EDIT_PROJECT:
       const projectsEditing = state.projects.filter(project => {

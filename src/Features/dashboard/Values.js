@@ -10,12 +10,13 @@ import {
 import { Paper } from "@material-ui/core";
 // import { withStyles } from '@material-ui/core/styles';
 // import { Edit, DeleteIcon } from "@material-ui/icons";
-import Projects from "./Projects";
+
 import { useSelector } from "react-redux";
 const styles = {};
 
 const Values = () => {
-  const values = useSelector(state => state.values.values);
+  const values = useSelector(state => state.values.topThreeValues);
+  console.log(`values: `, values);
 
   return (
     <React.Fragment>
@@ -24,12 +25,10 @@ const Values = () => {
           <React.Fragment key={value.valueId}>
             <Typography
               //   className={classes.valueName}
-              color="secondary"
-              variant="h5"
+              variant="h2"
             >
               {value.valueName}
             </Typography>
-            <Projects />
           </React.Fragment>
         ))}
       </Paper>
