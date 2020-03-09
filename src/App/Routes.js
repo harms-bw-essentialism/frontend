@@ -1,8 +1,8 @@
 import LoginForm from "../Features/User/LoginForm";
 import RegisterForm from "../Features/User/RegisterForm";
 import Process from "../Features/SelectValues/Process";
-import Dashboard from "../Features/Dashboard/Dashboard";
-import EditProject from "../Features/Dashboard/EditProject";
+import Dashboard from "../Features/AccountDashboard/Dashboard";
+import EditProject from "../Features/AccountDashboard/EditProject";
 
 const Routes = [
   {
