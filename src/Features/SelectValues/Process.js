@@ -65,6 +65,7 @@ const Process = () => {
       narrowedValues.forEach(value => {
         dispatch(submitValue(value));
       });
+
       dispatch(fetchProjects(userid));
     }
   }, [activeStep]);

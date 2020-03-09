@@ -12,6 +12,7 @@ import axios from "axios";
 import { axiosWithAuth } from "../../../Common/Utils/axiosWithAuth";
 
 export const fetchProjects = userId => dispatch => {
+  console.log(userId);
   dispatch({ type: FETCH_PROJECTS });
   axios
     .get(
@@ -21,7 +22,7 @@ export const fetchProjects = userId => dispatch => {
       dispatch({ type: FETCH_PROJECTS_SUCCESS, payload: res.data });
     })
     .catch(err => {
-      dispatch({ type: FETCH_PROJECTS_FAILURE, payload: err.message });
+      dispatch({ type: FETCH_PROJECTS_FAILURE, payload: err });
     });
 };
 

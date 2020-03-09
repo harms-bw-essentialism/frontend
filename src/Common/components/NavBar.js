@@ -84,11 +84,11 @@ const NavList = props => {
     { link: "Register", icon: <EditIcon /> }
   ];
   const loggedInLinks = [
-    {
-      link: "Projects",
-      icon: <CheckCircleOutlineIcon />
-    },
-    { link: "Values", icon: <FavoriteIcon /> }
+    // {
+    //   link: "Projects",
+    //   icon: <CheckCircleOutlineIcon />
+    // },
+    // { link: "Values", icon: <FavoriteIcon /> }
   ];
   let linksList = [];
 
