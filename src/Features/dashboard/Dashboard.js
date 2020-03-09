@@ -1,7 +1,7 @@
 import React from "react";
 import Projects from "./Projects";
 import Values from "./Values";
-import { Divider } from "@material-ui/core";
+import { Divider, Button } from "@material-ui/core";
 import Submission from "../InputProjects/Submission";
 import { useHistory } from "react-router-dom";
 
