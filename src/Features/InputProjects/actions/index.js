@@ -39,13 +39,27 @@ export const submitProject = project => dispatch => {
     .catch(err => dispatch({ type: SUBMIT_PROJECT_FAILURE, payload: err }));
 };
 
-export const startEditingProject = projectEditingId => dispatch => {
-  dispatch({ type: START_EDIT_PROJECT, payload: projectEditingId });
-};
+// export const startEditingProject = projectEditingId => dispatch => {
+//   dispatch({ type: START_EDIT_PROJECT, payload: projectEditingId });
+// };
 
-export const editProject = (projectid, changes) => dispatch => {
-  dispatch({ type: EDIT_PROJECT });
-  axiosWithAuth().put(
-    `https://essentialism.herokuapp.com/api/essentialism/projects`
-  );
-};
+// export const editProject = (projectid, changes) => dispatch => {
+//   dispatch({ type: EDIT_PROJECT });
+//   axiosWithAuth()
+//     .put(`https://essentialism.herokuapp.com/api/essentialism/projects`)
+//     .then()
+//     .catch();
+// };
+
+// export const deleteProject = (projectid, userid) => dispatch => {
+//   dispatch({ type: DELETE_PROJECT });
+//   axiosWithAuth()
+//     .delete(
+//       `https://essentialism.herokuapp.com/api/essentialism/projects/${projectid}`
+//     )
+//     .then(res => {
+//       dispatch({ type: DELETE_PROJECT_SUCCESS });
+//       dispatch(fetchProjects(userid));
+//     })
+//     .catch(err => dispatch({ type: DELETE_PROJECT_FAILURE, payload: err }));
+// };
