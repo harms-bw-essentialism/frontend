@@ -13,9 +13,11 @@ import Selection from "./Selection";
 import Narrow from "./Narrow";
 import Submission from "../InputProjects/Submission";
 import { submitValue } from "./actions";
+import { usehistory, useHistory } from "react-router-dom";
 
 const Process = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const userid = useSelector(state => state.user.user.userid);
   const narrowedValues = useSelector(state => state.values.topThreeValues);
   console.log(userid);
@@ -98,7 +100,12 @@ const Process = () => {
             <Typography className={classes.instructions}>
               All Steps Completed
             </Typography>
-            <Button onClick={evt => evt.preventDefault}>
+            <Button
+              onClick={evt => {
+                evt.preventDefault();
+                history.push("/dashboard");
+              }}
+            >
               View your Dashboard
             </Button>
           </div>
