@@ -8,13 +8,12 @@ import {
   FETCH_PROJECTS_FAILURE,
   EDIT_PROJECT
 } from "./types";
-import axios from "axios";
+
 import { axiosWithAuth } from "../../../Common/Utils/axiosWithAuth";
 
 export const fetchProjects = userId => dispatch => {
-  console.log(userId);
   dispatch({ type: FETCH_PROJECTS });
-  axios
+  axiosWithAuth()
     .get(
       `https://essentialism2020.herokuapp.com/api/essentialism/projects/user/${userId}`
     )
