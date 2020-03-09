@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProjects } from "../../Redux/Actions";
+import { fetchProjects } from "../InputProjects/actions/";
 import {
   Stepper,
   Step,
@@ -11,11 +11,15 @@ import {
 } from "@material-ui/core";
 import Selection from "./Selection";
 import Narrow from "./Narrow";
-import Submission from "../projects/Submission";
+import Submission from "../InputProjects/Submission";
+import { submitValue } from "./actions";
+import { usehistory, useHistory } from "react-router-dom";
 
 const Process = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const userid = useSelector(state => state.user.user.userid);
+  const narrowedValues = useSelector(state => state.values.topThreeValues);
   console.log(userid);
   const useStyles = makeStyles(theme => ({
     root: {
@@ -60,6 +64,10 @@ const Process = () => {
 
   useEffect(() => {
     if (activeStep === 2) {
+      narrowedValues.forEach(value => {
+        dispatch(submitValue(value));
+      });
+
       dispatch(fetchProjects(userid));
     }
   }, [activeStep]);
@@ -92,7 +100,12 @@ const Process = () => {
             <Typography className={classes.instructions}>
               All Steps Completed
             </Typography>
-            <Button onClick={evt => evt.preventDefault}>
+            <Button
+              onClick={evt => {
+                evt.preventDefault();
+                history.push("/dashboard");
+              }}
+            >
               View your Dashboard
             </Button>
           </div>

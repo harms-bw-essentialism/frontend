@@ -7,7 +7,7 @@ import {
   REGISTER_NEW_USER_SUCCESS,
   REGISTER_NEW_USER_FAILURE,
   LOG_USER_OUT
-} from "../Actions";
+} from "./types";
 
 const initialState = {
   user: {
@@ -21,7 +21,7 @@ const initialState = {
   isLoggedIn: false
 };
 
-export const userReducer = (state = initialState, { type, payload }) => {
+export const onBoardingReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case LOG_USER_IN:
       return {

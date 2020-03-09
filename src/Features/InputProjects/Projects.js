@@ -32,7 +32,7 @@ const Projects = () => {
           <CardContent>
             <Typography>{project.projectName}</Typography>
             <Typography>{project.projectDescription}</Typography>
-            {/* <Typography>{project.value}</Typography> */}
+            <Typography>{project.value}</Typography>
             <EditIcon onClick={onEditClick(project.id)} />
             <DeleteIcon onClick={onDeleteClick(project.id)} />
           </CardContent>

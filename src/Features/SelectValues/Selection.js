@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { selectValue, toggleOtherInput, addOther } from "../../Redux/Actions";
+import { selectValue, toggleOtherValueInput, addOtherValue } from "./actions";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   List,
@@ -27,7 +27,7 @@ const Selection = () => {
 
   const toggleOther = bool => evt => {
     evt.preventDefault();
-    dispatch(toggleOtherInput(!bool));
+    dispatch(toggleOtherValueInput(!bool));
   };
 
   const addOther = value => evt => {
@@ -55,7 +55,7 @@ const Selection = () => {
         <List className={classes.scroll}>
           {values.map(item => (
             <ListItem key={item.id} onClick={handleSelect(item)}>
-              <ListItemText>{item.name}</ListItemText>
+              <ListItemText>{item.valueName}</ListItemText>
               <ListItemIcon>
                 {item.selected ? <FavoriteIcon /> : <FavoriteBorderIcon />}
               </ListItemIcon>

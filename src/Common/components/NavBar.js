@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "../../Redux/Actions";
+import { logoutUser } from "../../Features/Onboarding/actions";
 import { useHistory } from "react-router-dom";
 import {
   AppBar,
@@ -84,11 +84,11 @@ const NavList = props => {
     { link: "Register", icon: <EditIcon /> }
   ];
   const loggedInLinks = [
-    {
-      link: "Projects",
-      icon: <CheckCircleOutlineIcon />
-    },
-    { link: "Values", icon: <FavoriteIcon /> }
+    // {
+    //   link: "Projects",
+    //   icon: <CheckCircleOutlineIcon />
+    // },
+    // { link: "Values", icon: <FavoriteIcon /> }
   ];
   let linksList = [];
 
