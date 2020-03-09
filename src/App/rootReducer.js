@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { onBoardingReducer } from "../Features/Onboarding/actions/onBoardingReducer";
+import { onBoardingReducer } from "../Features/User/actions/onBoardingReducer";
 import { projectsReducer } from "../Features/InputProjects/actions/projectsReducer";
 import { valuesReducer } from "../Features/SelectValues/actions/valuesReducer";
 

@@ -1,5 +1,5 @@
-import LoginForm from "../Features/Onboarding/LoginForm";
-import RegisterForm from "../Features/Onboarding/RegisterForm";
+import LoginForm from "../Features/User/LoginForm";
+import RegisterForm from "../Features/User/RegisterForm";
 import Process from "../Features/SelectValues/Process";
 import Dashboard from "../Features/Dashboard/Dashboard";
 import EditProject from "../Features/Dashboard/EditProject";
